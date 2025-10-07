@@ -1,0 +1,18 @@
+<div class="content">
+    <div class="logo">
+        <img src="assets/logoBlanco.png" alt="">
+        <h3>Delivery Brandsen</h3>
+    </div>
+    <div class="toolbar">
+        <div class="nombre">
+            
+        </div>
+        <div class="menu">
+            <mat-icon matListItemIcon [matMenuTriggerFor]="menu" >account_circle</mat-icon>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="logOut()">Cerrar sesion</button>
+            </mat-menu>
+        </div>
+
+    </div>
+</div>

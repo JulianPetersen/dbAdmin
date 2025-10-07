@@ -1,0 +1,63 @@
+.contenedor{
+    width: 100%;
+    height: 100vh;
+    background-color: #eb5d44;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .formulario{
+        width: 500px;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        .titulo{
+            margin-top: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 15px ;
+            img{
+                width: 100px;
+                margin-right: 10px;
+            }
+            h1{
+                color: white;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 30px;
+        
+            }
+        }
+
+        .inputs{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            input{
+                height: 40px;
+                width: 300px;
+                margin: 10px;
+                border-style: none;
+                background-color: #ffa899;
+                color: white;
+                
+            }
+            input::placeholder{
+                color:white;
+            }
+            button{
+                height: 40px;
+                width: 300px;
+                margin: 10px;
+                background-color: #eb5d44;
+                border-color: #eb5d44;
+                color: white;
+            }
+            .mensajeError{
+                color: red;
+                font-weight: bold;
+            }
+        }
+    }
+}
