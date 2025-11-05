@@ -1,10 +1,28 @@
 <app-header></app-header>
 <app-toolbar></app-toolbar>
-<div class="content" >
+<div class="content">
     <app-menu-lateral [ngClass]=""></app-menu-lateral>
     <div class="contenedor">
-        <div class="welcome">
-            <h3>BIENVENIDO {{logedUser.name}} {{logedUser.lastName}}</h3>
-        </div>
+
+
+        <mat-card class="card" appearance="outlined">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Bienvenido</mat-card-title>
+                <mat-card-subtitle>{{logedUser.name}} {{logedUser.lastName}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p *ngIf="!existingManagment">No hay gestiones activas en este momento</p>
+                <p *ngIf='existingManagment'> Hay una gestion Activa y pertenece a {{userByActiveManagment.name}} {{userByActiveManagment.lastName}} </p>
+            </mat-card-content>
+            <div class="buttons">
+                <button class="button" mat-flat-button (click)="createManagment()" *ngIf="!existingManagment">Comenzar mi gestión</button>
+                <button class="button" mat-flat-button (click)="createManagment()" *ngIf="userByActiveManagment?._id != logedUser?._id && existingManagment">Comenzar mi gestión</button>
+                <button class="button" mat-flat-button (click)="closeManagment()" *ngIf="userByActiveManagment?._id == logedUser?._id">Cerrar mi gestión</button>
+               
+            </div>
+        </mat-card>
+
+
     </div>
 </div>

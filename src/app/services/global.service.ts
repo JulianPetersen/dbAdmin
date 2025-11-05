@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AlertComponent } from '../components/ui/alert/alert.component';
 import { User } from '../models/user';
+import { InputDialogComponent } from '../components/ui/input-dialog/input-dialog.component';
 
 
 @Injectable({
@@ -38,6 +39,19 @@ export class GlobalService {
         dialogRef.close()
       }
     });
+  }
+
+  showAlertWithInput(
+    title: string,
+    message: string,
+    placeholder: string
+  ): Observable<string | null> {
+    const dialogRef = this.dialog.open(InputDialogComponent, {
+      width: '400px',
+      data: { title, message, placeholder }
+    });
+
+    return dialogRef.afterClosed(); // 👉 devuelve un Observable<string | null>
   }
 
   // isUserAdmin() {

@@ -33,6 +33,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { RouterModule } from '@angular/router';
+import { ActivedManagmentComponent } from './pages/admin/components/actived-managment/actived-managment.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { RouterModule } from '@angular/router';
     HomeComponent,
     AdminComponent,
     LoginComponent,
+    ActivedManagmentComponent,
     
   ],
   imports: [

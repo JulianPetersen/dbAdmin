@@ -9,10 +9,15 @@ import { AlertComponent } from './ui/alert/alert.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteDialogComponent } from './ui/delete-dialog/delete-dialog.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { LoadSpinnerComponent } from './ui/load-spinner/load-spinner.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
+import { InputDialogComponent } from './ui/input-dialog/input-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +26,8 @@ import { RouterModule } from '@angular/router';
     AlertComponent,
     DeleteDialogComponent,
     ToolbarComponent,
-    LoadSpinnerComponent
+    LoadSpinnerComponent,
+    InputDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -31,14 +37,18 @@ import { RouterModule } from '@angular/router';
     MatDialogModule,
     MatMenuModule,
     MatProgressSpinnerModule,
-    RouterModule
+    RouterModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
   ],
-  exports:[
+  exports: [
     HeaderComponent,
     MenuLateralComponent,
     DeleteDialogComponent,
     ToolbarComponent,
-    LoadSpinnerComponent
+    LoadSpinnerComponent,
+    InputDialogComponent
   ]
 })
 export class ComponentsModule { }
