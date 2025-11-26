@@ -9,7 +9,7 @@ import { GlobalService } from './services/global.service';
 export class AppComponent {
   title = 'recetivaAdmin';
 
-  constructor(private global:GlobalService){
+  constructor(public global:GlobalService){
 
   }
 }

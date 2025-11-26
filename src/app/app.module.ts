@@ -34,7 +34,15 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { RouterModule } from '@angular/router';
 import { ActivedManagmentComponent } from './pages/admin/components/actived-managment/actived-managment.component';
-
+import { ListedManagmentComponent } from './pages/admin/components/listed-managment/listed-managment.component';
+import { AdminCajaComponent } from './pages/admin-caja/admin-caja.component';
+import { CashRegisterComponent } from './pages/admin-caja/components/cash-register/cash-register.component';
+import { CashMovementsComponent } from './pages/admin-caja/components/cash-movements/cash-movements.component';
+import { CashregisterHistoryComponent } from './pages/cashregister-history/cashregister-history.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { CashRegisterClosedComponent } from './pages/admin-caja/components/cash-register-closed/cash-register-closed.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -43,6 +51,13 @@ import { ActivedManagmentComponent } from './pages/admin/components/actived-mana
     AdminComponent,
     LoginComponent,
     ActivedManagmentComponent,
+    ListedManagmentComponent,
+    AdminCajaComponent,
+    CashRegisterComponent,
+    CashMovementsComponent,
+    CashregisterHistoryComponent,
+    CashRegisterClosedComponent,
+    
     
   ],
   imports: [
@@ -67,14 +82,20 @@ import { ActivedManagmentComponent } from './pages/admin/components/actived-mana
     MatOptionModule,
     MatMenuModule,
     MatProgressSpinnerModule,
-    RouterModule
+    RouterModule,
+    MatDatepickerModule,
+    MatDialogModule
+
     
   ],
   providers: [
     provideClientHydration(),
     provideAnimationsAsync(),
     provideHttpClient(withFetch()), 
+    provideNativeDateAdapter()
   ],
   bootstrap: [AppComponent]
 })
+
+
 export class AppModule { }

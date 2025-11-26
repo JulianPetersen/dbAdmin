@@ -1,0 +1,71 @@
+<h2 mat-dialog-title class="dialog-title">
+  {{ data.title }}
+</h2>
+
+<mat-dialog-content class="dialog-content">
+
+  <div class="summary-card">
+
+    <!-- Fecha de cierre -->
+    <div class="row">
+      <span class="label">Fecha de cierre:</span>
+      <span class="value">{{ data.content.fechaCierre | date:'short' }}</span>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <!-- Apertura -->
+    <div class="row">
+      <span class="label">Monto de apertura:</span>
+      <span class="value">${{ data.content.apertura }}</span>
+    </div>
+
+    <!-- Ingresos -->
+    <div class="row ingreso">
+      <span class="label">Ingresos:</span>
+      <span class="value">+ ${{ data.content.ingresos }}</span>
+    </div>
+
+    <!-- Egresos -->
+    <div class="row egreso">
+      <span class="label">Egresos:</span>
+      <span class="value">- ${{ data.content.egresos }}</span>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <!-- Monto teórico -->
+    <div class="row">
+      <span class="label">Monto teórico:</span>
+      <span class="value">${{ data.content.montoTeorico }}</span>
+    </div>
+
+    <!-- Monto real -->
+    <div class="row">
+      <span class="label">Monto real contado:</span>
+      <span class="value">${{ data.content.montoReal }}</span>
+    </div>
+
+    <!-- Diferencia -->
+    <div class="row" 
+         [ngClass]="{
+            'ok': data.content.diferencia === 0,
+            'warning': data.content.diferencia !== 0
+         }">
+
+      <span class="label">Diferencia:</span>
+      <span class="value">
+        ${{ data.content.diferencia }}
+      </span>
+    </div>
+
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cerrar</button>
+  <button mat-flat-button color="primary" mat-dialog-close>
+    Aceptar
+  </button>
+</mat-dialog-actions>

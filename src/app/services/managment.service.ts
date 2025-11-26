@@ -1,21 +1,25 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { GlobalService } from './global.service';
 import { AllManagmentToday } from '../models/managment';
+import { isPlatformBrowser } from '@angular/common';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ManagmentService {
 
-  constructor(private http: HttpClient, private global: GlobalService) { }
+  constructor(private http: HttpClient, private global: GlobalService,@Inject(PLATFORM_ID) private platformId: Object) { }
 
+     private managmentAddedSource = new Subject<void>();
+     managmentAdded$ = this.managmentAddedSource.asObservable(); // <-- observable público
 
   private getToken(): string | null {
-    if (typeof window !== 'undefined') {  // Aseguramos que esto solo suceda en el cliente
+    if (isPlatformBrowser(this.platformId)) {
       return localStorage.getItem('token');
     }
-    return null;  // En el servidor, simplemente no hay token
+    return null;
   }
 
   createManagment(data?: { openingAmount?: number }) {
@@ -61,5 +65,9 @@ export class ManagmentService {
     })
 
     return this.http.put(`${this.global.URL}/managment/get-managment-status`,{} ,{ headers: headers })
+  }
+
+    notifyManagmentAdded() {
+    this.managmentAddedSource.next();
   }
 }

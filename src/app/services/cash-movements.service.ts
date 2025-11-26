@@ -1,15 +1,17 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { GlobalService } from './global.service';
+import { Subject } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
-
 @Injectable({
   providedIn: 'root'
 })
-export class CashregisterService {
+export class CashMovementsService {
 
   constructor(private http: HttpClient, private global: GlobalService, @Inject(PLATFORM_ID) private platformId: Object) { }
 
+  private movementAddedSource = new Subject<void>();
+  movementAdded$ = this.movementAddedSource.asObservable(); // <-- observable público
 
   private getToken(): string | null {
     if (isPlatformBrowser(this.platformId)) {
@@ -18,22 +20,34 @@ export class CashregisterService {
     return null;
   }
 
-  getCashRegisterToday() {
+  getcashMovementsToday() {
     const token = this.getToken();  // Obtenemos el token de forma segura
     let headers = new HttpHeaders({
       'x-access-token': token || ''  // Si el token no existe, mandamos un string vacío
     })
-    return this.http.get(`${this.global.URL}/cashregister/today`, { headers: headers })
+    return this.http.get(`${this.global.URL}/cashMovement/today`, { headers: headers })
   }
 
 
-  closeCashRegister(date: string) {
+  createCashMovementTOday(movement: any) {
     const token = this.getToken();  // Obtenemos el token de forma segura
     let headers = new HttpHeaders({
       'x-access-token': token || ''  // Si el token no existe, mandamos un string vacío
     })
-    const params = new HttpParams().set('date', date);
-
-    return this.http.put(`${this.global.URL}/cashregister/close`,{},{ headers, params });
+    return this.http.post(`${this.global.URL}/cashMovement`, movement, { headers: headers })
   }
+
+  notifyMovementAdded() {
+    this.movementAddedSource.next();
+  }
+
+
+  deleteCashMovement(id:string) {
+    const token = this.getToken();  // Obtenemos el token de forma segura
+    let headers = new HttpHeaders({
+      'x-access-token': token || ''  // Si el token no existe, mandamos un string vacío
+    })
+     return this.http.delete(`${this.global.URL}/cashMovement/${id}`, { headers: headers })
+  }
+
 }

@@ -23,6 +23,7 @@ export class LoginComponent {
 
   login(){
     console.log(this.user)
+    this.global.showLoader()
     this.auth.login(this.user)
       .subscribe({
         next: ((res:loginResponse) => {
@@ -30,9 +31,11 @@ export class LoginComponent {
           localStorage.setItem('token',res.token)
           localStorage.setItem('dataUser', JSON.stringify(res.user))
           this.router.navigateByUrl('admin')
+          this.global.hideLoader()
         }),
         error: ((err) => {
           this.errorLogin = err.message
+          this.global.hideLoader()
         })
       })
   }

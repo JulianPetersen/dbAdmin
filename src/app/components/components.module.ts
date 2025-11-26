@@ -17,7 +17,8 @@ import { InputDialogComponent } from './ui/input-dialog/input-dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FormsModule } from '@angular/forms';
     ToolbarComponent,
     LoadSpinnerComponent,
     InputDialogComponent,
+
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,9 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   exports: [
     HeaderComponent,
@@ -48,7 +52,8 @@ import { FormsModule } from '@angular/forms';
     DeleteDialogComponent,
     ToolbarComponent,
     LoadSpinnerComponent,
-    InputDialogComponent
+    InputDialogComponent,
+
   ]
 })
 export class ComponentsModule { }

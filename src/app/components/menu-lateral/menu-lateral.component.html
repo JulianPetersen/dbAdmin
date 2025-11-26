@@ -1,24 +1,36 @@
-
-
-
 <div class="content">
-    <div class="menu" [ngClass]="{'menuView': menuService.menuView == true}">
-      <div class="buttons">
-        <button mat-button [routerLink]="['/admin']">Inicio</button>
-  
-        <!-- Botón principal con toggle para submenú -->
-        <button mat-button (click)="toggleRecetasSubmenu()">Administrar Deliverys</button>
-  
-        <!-- Submenú -->
-        <div *ngIf="showRecetasSubmenu" class="submenu">
-          <button mat-button [routerLink]="['/recetas']">Deliverys</button>
-        </div>
-  
-        <!-- Otro contenido -->
-        <button *ngIf="isadmin" mat-button [routerLink]="['/useradmin']">Administrar Usuarios</button>
-        <button *ngIf="isadmin" mat-button [routerLink]="['/useradmin']">Administrar Caja</button>
-        <button *ngIf="isadmin" mat-button [routerLink]="['/useradmin']">Administrar Productos</button>
-        
+  <div class="menu" [ngClass]="{'menuView': menuService.menuView == true}">
+    <div class="buttons">
+      <button mat-button [routerLink]="['/admin']">Inicio</button>
+
+      <!-- Botón principal con toggle para submenú -->
+      <button mat-button (click)="toggleRecetasSubmenu()">Administrar Deliverys</button>
+
+      <!-- Submenú -->
+      <div *ngIf="showRecetasSubmenu" class="submenu">
+        <button mat-button [routerLink]="['/recetas']">Deliverys</button>
       </div>
+
+      <!-- Otro contenido -->
+      <button *ngIf="isadmin" mat-button [routerLink]="['/useradmin']">Administrar Usuarios</button>
+
+
+      <button *ngIf="isadmin" mat-button
+        (click)="toggleCashRegisterSubmenu()">Administrar Caja</button>
+
+      <div *ngIf="showCashRegisterSubMenu" class="submenu">
+        <button mat-button  [routerLink]="['/admin-caja']">Caja Diaria</button>
+      </div>
+
+      <div *ngIf="showCashRegisterSubMenu" class="submenu">
+        <button mat-button [routerLink]="['/cashregister-history']">Historial de cajas</button>
+      </div>
+
+
+
+
+      <button *ngIf="isadmin" mat-button [routerLink]="['/useradmin']">Administrar Productos</button>
+
     </div>
   </div>
+</div>

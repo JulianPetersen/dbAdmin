@@ -1,13 +1,54 @@
 <h2 mat-dialog-title>{{ data.title }}</h2>
+
 <mat-dialog-content>
-  <p>{{ data.message }}</p>
-  <mat-form-field appearance="outline" class="w-full">
-    <mat-label>{{ data.placeholder }}</mat-label>
-    <input matInput [(ngModel)]="inputValue" />
-  </mat-form-field>
+  <!-- declaramos el NgForm -->
+  <form class="dialog-form" #form="ngForm">
+    <div *ngFor="let field of data.fields" class="form-field">
+
+      <!-- Campo texto/número -->
+      <mat-form-field appearance="outline" class="full-width" *ngIf="field.type === 'text' || field.type === 'number'">
+        <mat-label>{{ field.label }}</mat-label>
+
+        <input
+          matInput
+          [type]="field.type"
+          [(ngModel)]="formData[field.key]"
+          [name]="field.key"
+          [required]="field.required"
+          #ctrl="ngModel"
+        />
+
+        <mat-error *ngIf="ctrl.invalid && ctrl.touched">
+          {{ field.label }} es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Selector -->
+      <mat-form-field appearance="outline" class="full-width" *ngIf="field.type === 'select'">
+        <mat-label>{{ field.label }}</mat-label>
+
+        <mat-select
+          [(ngModel)]="formData[field.key]"
+          [name]="field.key"
+          [required]="field.required"
+          #ctrlSel="ngModel"
+        >
+          <mat-option *ngFor="let option of field.options" [value]="option.value">
+            {{ option.label }}
+          </mat-option>
+        </mat-select>
+
+        <mat-error *ngIf="ctrlSel.invalid && ctrlSel.touched">
+          {{ field.label }} es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+  </form>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
   <button mat-button (click)="onCancel()">Cancelar</button>
-  <button mat-flat-button color="primary" (click)="onConfirm()">Aceptar</button>
+  <!-- pasamos el form como parámetro -->
+  <button mat-flat-button color="primary" (click)="onSave(form)">Guardar</button>
 </mat-dialog-actions>
