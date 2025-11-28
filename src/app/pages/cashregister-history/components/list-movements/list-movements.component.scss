@@ -1,0 +1,36 @@
+.cash-movements {
+  h2 {
+    margin-bottom: 1rem;
+    color: #444;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    min-width: 700px;
+  }
+
+  .ingreso {
+    color: #2e7d32;
+    font-weight: 500;
+  }
+
+  .egreso {
+    color: #c62828;
+    font-weight: 500;
+  }
+
+  .no-data {
+    text-align: center;
+    color: #888;
+    margin-top: 1rem;
+  }
+
+  .spinner {
+    display: block;
+    margin: 2rem auto;
+  }
+}

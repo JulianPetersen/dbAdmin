@@ -1,0 +1,50 @@
+<div class="cashDetails" *ngIf="cashSelected">
+    <mat-card class="cash-card" *ngIf="cashSelected.cashRegister">
+        <mat-card-header>
+            <mat-card-title>Caja del día</mat-card-title>
+            <mat-card-subtitle>{{ formatDate(cashSelected.cashRegister.date) }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="row">
+                <div class="col">
+                    <p class="label">Usuario apertura</p>
+                    <p class="value">
+                        {{ cashSelected.cashRegister.openingUser?.name }}
+                        {{ cashSelected.cashRegister.openingUser?.lastName }}
+                    </p>
+                </div>
+
+                <div class="col">
+                    <p class="label">Monto apertura</p>
+                    <p class="value">
+                        ${{ cashSelected.cashRegister.openingAmount | number:'1.0-0' }}
+                    </p>
+                </div>
+
+                <div class="col">
+                    <p class="label">Saldo actual</p>
+                    <p class="value">
+                        ${{ cashSelected.cashRegister.currentAmount | number:'1.0-0' }}
+                    </p>
+                </div>
+
+                <div class="col">
+                    <p class="label">Estado</p>
+                    <p class="value">
+                        {{ cashSelected.cashRegister.isClosed ? 'Cerrada' : 'Abierta' }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="meta">
+                <small>Creada: {{ formatDateTime(cashSelected.cashRegister.createdAt) }}</small>
+                <small>Última actualización: {{ formatDateTime(cashSelected.cashRegister.updatedAt) }}</small>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div class="cashDetails" *ngIf="!cashSelected">
+    <p>No hay caja para esta fecha</p>
+</div>

@@ -43,6 +43,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { CashRegisterClosedComponent } from './pages/admin-caja/components/cash-register-closed/cash-register-closed.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { CalendarSelectorComponent } from './pages/cashregister-history/components/calendar-selector/calendar-selector.component';
+import { CashDetailsComponent } from './pages/cashregister-history/components/cash-details/cash-details.component';
+import { ListMovementsComponent } from './pages/cashregister-history/components/list-movements/list-movements.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     CashMovementsComponent,
     CashregisterHistoryComponent,
     CashRegisterClosedComponent,
+    CalendarSelectorComponent,
+    CashDetailsComponent,
+    ListMovementsComponent,
     
     
   ],

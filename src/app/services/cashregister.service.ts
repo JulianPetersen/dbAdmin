@@ -26,6 +26,15 @@ export class CashregisterService {
     return this.http.get(`${this.global.URL}/cashregister/today`, { headers: headers })
   }
 
+    getCashRegisterByDate(date:string) {
+    const token = this.getToken();  // Obtenemos el token de forma segura
+    let headers = new HttpHeaders({
+      'x-access-token': token || ''  // Si el token no existe, mandamos un string vacío
+    })
+    const params = new HttpParams().set('date', date);
+    return this.http.get(`${this.global.URL}/cashregister/by-date`, { headers,params })
+  }
+
 
   closeCashRegister(date: string) {
     const token = this.getToken();  // Obtenemos el token de forma segura
